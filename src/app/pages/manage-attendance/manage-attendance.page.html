@@ -1,0 +1,13 @@
+<app-header></app-header>
+
+<ion-content>
+    <div class="page-title">
+        <img src="../../../assets/images/manage-attend.png" alt="" />
+        <h3> Manage Attendance  </h3>
+    </div>
+
+    <form class="form-manage-attendance" (ngSubmit)="checkAttendance()">
+        <ng-otp-input (onInputChange)="onOtpChange($event)" [config]="{length:6}"></ng-otp-input>
+        <button type="button" [disabled]="pinCode === '' " (click)="checkAttendance()"> Done </button>
+    </form>
+</ion-content>

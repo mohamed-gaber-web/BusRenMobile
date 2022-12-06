@@ -1,0 +1,38 @@
+<app-header></app-header>
+
+<ion-content>
+
+  <div class="page-title">
+    <img src="../../../assets/images/report.png" alt="" />
+    <h3> Report a problem  </h3>
+  </div>
+
+  <h3 class="bus-number"> <span> Bus No: </span> {{ busNumber }} </h3>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <form [formGroup]="reportForm" class="report-bus-form" (ngSubmit)="onAddReportBus()">
+          <div class="input-group" *ngFor="let problem of listOfProblems">
+            <div class="form-group">
+              <label for="oil"> {{ problem['problemTranslations'].name }}</label><br>          
+              <input 
+                (change)="sendId($event)" 
+                formControlName="{{problem.id}}problemId" type="checkbox" id="oil" 
+                value="{{problem.id}}">
+            </div>
+            <textarea formControlName="{{problem.problemTranslations?.name}}text" placeholder="Add text"></textarea>
+          </div>
+          <div class="form-button">
+            <button> Done </button>
+          </div>
+          <br />
+          <br />
+          <br />
+          <br />
+        </form>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

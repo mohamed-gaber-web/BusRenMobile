@@ -1,0 +1,42 @@
+<app-header></app-header>
+
+<ion-content>
+
+  <div class="page-title" *ngIf="busDetails">
+    <img src="../../../assets/images/add-bus-titl.png" alt="" />
+    <h3> Bus No {{ busDetails.busNumber }}  </h3>
+  </div>
+
+  <ion-grid  *ngIf="busDetails">
+    <ion-row>
+      <ion-col>
+        <form [formGroup]="workOnBusForm" class="add-bus-form">
+
+          <div class="form-group select-icon">
+            <label> Garage:  </label>
+             <img  src="../../../assets/images/icon-select.png" />
+
+            <select formControlName="garage" >
+              <option> 
+                {{ busDetails.garageName }} 
+              </option>
+            </select>
+          </div>
+
+          <div class="form-group select-icon">
+            <label> Company:  </label>
+            <img  src="../../../assets/images/icon-select.png" />
+            <select formControlName="company">
+              <option>{{ busDetails.companyName }}</option>
+            </select>
+          </div>
+          <div class="form-button">
+            <button (click)="goToReportBus()"> Report </button>
+            <button (click)="doneWorkOnBus()"> Done </button>
+          </div>
+        </form>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

@@ -1,0 +1,589 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "~@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import '~@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css");
+
+
+
+// General elements
+
+ion-tab-bar.my-custom-tab-bar {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+ion-toast.custom-toast {
+    --background: #ADE125 !important;
+    text-align: center !important;
+    font-size: 20px !important;
+    font-weight: 600 !important;
+    --color: #005478 !important;
+}
+
+
+.primary-btn {
+    background-color: var(--ion-color-primary);
+    padding: 20px 30px;
+    border-radius: 8px;
+    color: #fff;
+    font-weight: 500;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+ion-toolbar {
+    --background: var(--ion-color-primary);
+    --min-height: 60px;
+    border-radius: 0 0 40px 40px;
+    position: fixed;
+    padding: 0 30px;
+
+    ion-avatar {
+        width: 40px;
+        height: auto;
+    }
+}
+ ion-tab-bar, ion-tab-button{
+    background: var(--ion-color-secondary);
+    min-height: 65px;
+    border-radius: 40px 40px 0 0;
+
+    ion-label {
+        color: #fff;
+        font-size: 12px;
+        font-weight: 500;
+    }
+}
+
+.footer-img {
+    width: 30px;
+    height: 30px;
+}
+
+ion-back-button {
+    display: block;
+    color: #fff;
+ }
+
+ .page-title {
+    text-align: center;
+    margin: 80px 0 0 0;
+
+    img {
+        max-width: 50px;
+    }
+
+    h3 {
+        color: var(--ion-color-secondary);
+        font-size: 18px;
+        padding: 0;
+        margin:10px 0 0 0;
+        font-weight: 700;
+    }
+ }
+
+ .error {
+    text-align: right;
+    span {
+        font-size: 12px;
+        color: red;
+        text-align: center;
+        padding: 0;
+        margin: 0;
+    }
+ }
+
+ a[disabled], button[disabled], html input[disabled] {
+    background-color: #f1ffcd !important;
+  }
+
+.valid-error {
+    text-align: center;
+    color: #c80e0e;
+    display: flex;
+    justify-content: end;
+    font-size: 18px;
+    padding: 10px 0;
+    font-weight: 500;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    color: rgba(0, 0, 0, 0);
+    opacity: 1;
+    display: block;
+    background: url('./assets/images/icon-date.png') no-repeat;
+    width: 20px;
+    height: 20px;
+    border-width: thin;
+}
+
+input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+    color: rgba(0, 0, 0, 0);
+    opacity: 1;
+    display: block;
+    background: url('./assets/images/icon-date.png') no-repeat;
+    width: 20px;
+    height: 20px;
+    border-width: thin;
+}
+
+input[type="time"]::-webkit-calendar-picker-indicator {
+    color: rgba(0, 0, 0, 0);
+    opacity: 1;
+    display: block;
+    background: url('./assets/images/icon-time.png') no-repeat;
+    width: 20px;
+    height: 20px;
+    border-width: thin;
+}
+
+.select-icon {
+    position: relative !important;
+
+    img {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        z-index: 20000000;
+    }
+}
+
+select {
+    -moz-appearance:none; /* Firefox */
+    -webkit-appearance:none; /* Safari and Chrome */
+    appearance:none;
+}
+
+.pagi {
+    text-align: center;
+    margin: auto;
+}
+
+.ngx-pagination .current {
+    background: #ade125 !important;
+}
+
+.spinner-circular {
+    text-align: center;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80px;
+    height: 80px;
+    --color: #ade125 !important;
+}
+
+.form-group-custom {
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+
+    ion-label {
+        font-size: 20px;
+        font-weight: 600;
+        padding-right: 20px;
+        margin-top: 7px;
+    }
+}
+
+// Start Login Page 
+
+.login-start-bg {
+    --background: url(./assets/images/login-start-bg.jpg)  0 0/100% 100% no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    height: 100%;
+}
+
+.logo {
+    padding-left: 20px;
+    margin-top: 90px;
+
+    img {
+        width: 120px;
+        height: auto;
+    }
+}
+
+.start-btn {
+    text-align: center;
+    margin-top: 100px;
+
+    button {
+        @extend .primary-btn
+    }
+}
+
+//  Manage Attendance
+
+.form-manage-attendance {
+    text-align: center;
+    margin-top: 80px;
+
+    button {
+        margin-top: 30px;
+        @extend .primary-btn
+    }
+}
+
+// Check Attendance
+
+.attendance-check-info {
+    display: flex;
+    justify-content: center;
+    margin: 50px 0 20px 0;
+
+    .image-info {
+        img {
+            width: 130px;
+            height: auto;
+            border-radius: 10px;
+        }
+    }
+
+    .text-info {
+        ul {
+            list-style: none;
+            margin: 0;
+
+            li {
+                color: #6D6D6D;
+                font-size: 15px;
+                font-weight: 400;
+                line-height: 30px;
+            }
+
+            .name {
+                color: var(--ion-color-secondary) !important;
+                font-weight: 600;
+            }
+        }
+    }
+}
+
+.btn-check {
+    text-align: center;
+    margin: 45px 0 ;
+    button {
+        display: block;
+        width: 50%;
+        margin: 20px auto;
+        height: 40px;
+        border-radius: 10px;
+        font-size: 14px;
+    }
+
+    .checked {
+        background-color: var(--ion-color-primary) !important;
+        border: none !important;
+        color: #fff;
+    }
+
+    .un-checked {
+        background-color: #fff !important;
+        border: 3px solid var(--ion-color-primary);
+    }
+
+        
+    .take-brake {
+        height: 150px;
+        padding: 20px 0;
+        overflow: scroll;
+    }
+
+    .time-take-break {
+       display: flex;
+       color: #A1A1A1;
+       justify-content: center;
+
+       .time-block {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            span.time {
+                border: 2px solid #ADE125;
+                border-radius: 10px;
+                width: 100px;
+                padding: 5px 15px;
+                font-size: 12px;
+                font-weight: 600;
+                margin: 10px 20px;
+            }
+
+            p {
+                font-size: 12px;
+                font-weight: 600;
+                padding-bottom: 5px;
+            }
+       }
+
+
+    }
+    
+}
+
+// Check Attendance
+
+// Add Bus
+
+.add-bus-form {
+
+    width: 80%;
+    margin: 40px auto;
+
+    .form-group {
+        
+        label {
+            font-size: 15px;
+            color: #0E829B;
+            font-weight: 400;
+            width: 30%;
+            float: left;
+            float: clear;
+            margin-top: 20px;
+            position: relative;
+        }
+
+        input, select {
+            width: 70%;
+            height: 40px;
+            margin: 10px 0;
+            border-radius: 30px;
+            background-color: #fff;
+            padding: 0 10px;
+            border: 1px solid var(--ion-color-primary);
+            position: relative;
+
+        }
+    }
+
+    .form-button {
+        text-align: center;
+        margin-top: 50px;
+
+        button {
+            background-color: var(--ion-color-primary);
+            border-radius: 10px;
+            padding: 15px 40px;
+            margin: 10px 10px 0 10px;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+    }
+
+    ion-icon {
+        font-size: 20px;
+        position: relative;
+        top: 2px;
+    }
+
+    .form-group-pinCode {
+        label {
+            font-size: 15px;
+            color: #0E829B;
+            font-weight: 400;
+            width: 30%;
+            float: left;
+            float: clear;
+            margin-top: 20px;
+            position: relative;
+        }
+    }
+}
+
+// Add Bus
+
+// Choose Bus
+
+.choose-bus-form {
+
+    width: 70%;
+    margin: 30px auto;
+
+    .form-group, .form-group-pinCode {
+        position: relative;
+        label {
+            font-size: 15px;
+            color: #0E829B;
+            font-weight: 400;
+            width: 30%;
+            float: left;
+            float: clear;
+            margin-top: 8px;
+        }
+
+        input, select, .ng-otp-input-wrapper {
+            width: 70%;
+            height: 40px;
+            margin: 0 0 15px 0;
+            border-radius: 30px;
+            background-color: #fff;
+            padding: 0 10px;
+            border: 1px solid var(--ion-color-primary);
+            position: relative;
+        }
+        ion-icon {
+            position: absolute;
+            right: 10px;
+            top: 12px;
+            font-size: 20px;
+            color: #0E829B;
+        }
+    }
+}
+
+.buses-items {
+
+    border: 1px solid #0E829B;
+    border-radius: 10px;
+    padding: 15px 10px;
+    width: 80%;
+    margin-bottom: 120px;
+
+    .buses-block {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+    
+        ion-img {
+            width: 40px;
+        }
+    
+        .bus-info {
+            margin-top: 10px;
+            p {
+                padding: 0;
+                font-size: 13px;
+                font-weight: 400;
+                color: #6D6D6D;
+                margin: 10px 0;
+    
+                b {
+                    margin-left: 10px;
+                    font-weight: 400;
+                }
+            }
+        }
+    
+        .bus-button {
+            button {
+                @extend .primary-btn;
+                padding: 12px 17px; 
+                font-size: 14px;
+                width: 150px !important;
+            }
+        }
+    }
+}
+
+// Choose Bus
+
+// Report Bus
+.report-bus-form {
+    width: 60%;
+    margin: 30px auto;
+    .input-group {
+        margin: 10px 0;
+
+        .form-group {
+            border: 1px solid #ADE125;
+            border-radius: 20px;
+            padding: 8px 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            label {
+                font-size: 13px;
+                color: #6D6D6D;
+                font-weight: 400;
+            }
+            input{
+                // width: 100%;
+                height: 20px;
+                margin: 0;
+                border-radius: 30px;
+                background-color: #fff;
+                padding: 10px;
+                border: 1px solid var(--ion-color-primary);
+            }
+        }
+    }
+    textarea {
+        height: 60px;
+        width: 100%;
+        border: 1px solid #ADE125;
+        border-radius: 20px;
+        padding: 10px;
+        font-size: 13px;
+        margin-top: 5px;
+    }
+    .form-button {
+        text-align: center;
+        button {
+            background-color: var(--ion-color-primary);
+            border-radius: 10px;
+            padding: 15px 40px;
+            margin: 10px 10px 0 10px;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+        }
+    }
+}
+
+h3.bus-number {
+    text-align: center;
+    font-size: 23px;
+    font-weight: 400;
+    span {
+        color: #0E829B;
+        margin-right: 10px;
+    }
+}
+// Report Bus
+
+
+// Media query mobile version
+
+@media(max-width: 480px) {
+    .add-bus-form {
+
+        width: 95%;
+        margin: 20px auto;
+    }
+}
+
+// Media query mobile version
+
+

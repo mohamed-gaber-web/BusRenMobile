@@ -1,0 +1,7 @@
+{
+  "name": "bus ren",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
