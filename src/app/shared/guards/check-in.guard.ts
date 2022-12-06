@@ -14,7 +14,7 @@ export class CheckInGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     const pinCode = localStorage.getItem('pinCode');
     const isTakeBreak = JSON.parse(localStorage.getItem('isTakeTime'));
-    if(pinCode && isTakeBreak) {
+    if(pinCode || isTakeBreak) {
       return true;
     } else {
       this.router.navigate(['check-attendance']);
