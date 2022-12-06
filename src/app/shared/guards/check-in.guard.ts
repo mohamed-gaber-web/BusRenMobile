@@ -13,13 +13,16 @@ export class CheckInGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     const pinCode = localStorage.getItem('pinCode');
+    const checkIn = localStorage.getItem('checkIn');
     const isTakeBreak = JSON.parse(localStorage.getItem('isTakeTime'));
-    if(pinCode || isTakeBreak) {
+    if(checkIn || isTakeBreak) {
       return true;
     } else {
       this.router.navigate(['check-attendance']);
       return false;
     }
+
+    return false;
   }
   
 }
