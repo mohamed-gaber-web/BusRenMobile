@@ -28,7 +28,7 @@
   <div class="btn-check">
     <button [class]="{'un-checked' : checkIn === false, 'checked': checkIn === true }" id="open-modal" expand="block"> Check In </button>
 
-    <button [disabled]="!checkIn" *ngIf="!isTakeBreak" id="open-modal-take-break" expand="block" [class]="{'un-checked' : !isTakeBreak, 'checked' : isTakeBreak}"> Take Break </button>
+    <button [disabled]="!checkIn" *ngIf="!isTakeBreak" expand="block" (click)="setOpen()" [class]="{'un-checked' : !isTakeBreak, 'checked' : isTakeBreak}"> Take Break </button>
     <button [disabled]="!checkIn" *ngIf="isTakeBreak" class="checked" (click)="backToWork()"> Back to work </button>
     <div class="take-brake" *ngIf="isTakeBreak && takeFromTime">
       <div class="time-take-break" *ngFor="let timeBreake of takeFromTime">
@@ -70,7 +70,7 @@
   <!-- Modal -->
 
   <!-- Modal take break -->
-  <ion-modal trigger="open-modal-take-break">
+  <ion-modal [isOpen]="isModalOpen">
     <ng-template>
       <ion-header>
         <ion-toolbar>

@@ -22,6 +22,8 @@ export class CheckAttendancePage implements OnInit, OnDestroy {
   isTakeBreak: boolean;
   isTakeBreakLocal: boolean;
   takeFromTime: any;
+  isModalOpen = false;
+
 
   constructor(
     private dataService: DataService,
@@ -184,11 +186,18 @@ export class CheckAttendancePage implements OnInit, OnDestroy {
 
   cancelTakeBreak() {
     this.modal.dismiss(null, 'cancel');
+    this.isModalOpen = false;
+
   }
 
   confirmTakeBreak() {
     this.modal.dismiss(this.pinCode, 'confirm');
     this.takeBreakFN();
+    this.isModalOpen = false;
+  }
+
+  setOpen() {
+    this.isModalOpen = !this.isModalOpen;
   }
 
   // check out
