@@ -115,6 +115,7 @@ export class CheckAttendancePage implements OnInit, OnDestroy {
       if(response['success'] === true) {
         localStorage.removeItem('isTakeTime');
         this.isTakeBreak = null;
+        this.getBreakTime();
       } 
       else {
         const toast = await this.toastController.create({

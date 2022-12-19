@@ -30,7 +30,7 @@
 
     <button [disabled]="!checkIn" *ngIf="!isTakeBreak" expand="block" (click)="setOpen()" [class]="{'un-checked' : !isTakeBreak, 'checked' : isTakeBreak}"> Take Break </button>
     <button [disabled]="!checkIn" *ngIf="isTakeBreak" class="checked" (click)="backToWork()"> Back to work </button>
-    <div class="take-brake" *ngIf="isTakeBreak && takeFromTime">
+    <div class="take-brake">
       <div class="time-take-break" *ngFor="let timeBreake of takeFromTime">
         <div class="time-block">
           <p> From </p>
