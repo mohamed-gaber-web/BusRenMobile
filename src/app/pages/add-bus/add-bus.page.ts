@@ -37,8 +37,6 @@ export class AddBusPage implements OnInit, OnDestroy {
     this.getAllCompany();
   }
 
-
-
   createAddBusForm() {
     this.addBusForm = this.fb.group({
       busNumber: ['', [Validators.required]],
@@ -48,6 +46,10 @@ export class AddBusPage implements OnInit, OnDestroy {
       // pinCode: [this.pinCodeS, Validators.required]
     });
     this.addBusForm.valueChanges.subscribe();
+  }
+
+  resetForm() {
+    this.addBusForm.reset();
   }
 
   // add pinCode

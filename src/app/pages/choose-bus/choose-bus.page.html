@@ -1,31 +1,36 @@
 <app-header></app-header>
 
 <ion-content>
-
   <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
   <div class="page-title">
     <img src="../../../assets/images/add-bus-titl.png" alt="" />
-    <h3> Choose Bus  </h3>
+    <h3>Choose Bus</h3>
   </div>
 
-  <form [formGroup]="chooseBusForm" class="choose-bus-form" >
-
+  <form [formGroup]="chooseBusForm" class="choose-bus-form">
     <div class="form-group select-icon">
-      <label> Category:  </label>
-      <img style="position: absolute; top: 12px; right: 20px" src="../../../assets/images/icon-select.png" />
+      <label> Category: </label>
+      <img
+        style="position: absolute; top: 12px; right: 20px"
+        src="../../../assets/images/icon-select.png"
+      />
       <select formControlName="category" (change)="filterBusByBusAndCategory()">
-        <option value="1"> ContractedBuses </option>
-        <option value="2"> UnContractedBuses </option>
-        <option value="3">  EmergencyEntrance </option>
+        <option value="1">ContractedBuses</option>
+        <option value="2">UnContractedBuses</option>
+        <option value="3">EmergencyEntrance</option>
       </select>
     </div>
 
     <div class="form-group">
-      <label> Search:  </label>
-      <input type="search" formControlName="searchBus" (change)="filterBusByBusAndCategory()" />
+      <label> Search: </label>
+      <input
+        type="search"
+        formControlName="searchBus"
+        (change)="filterBusByBusAndCategory()"
+      />
       <ion-icon name="search-outline"></ion-icon>
     </div>
   </form>
@@ -35,36 +40,50 @@
     <!-- *ngIf="pinCodeToggle" -->
 
     <ion-row>
-      <ion-col size="12" 
-        *ngFor="let busItem of allBusesByEmployee | paginate: { itemsPerPage: itemsPerPage, currentPage: page,  totalItems: totalItems }">
+      <ion-col
+        size="12"
+        *ngFor="let busItem of allBusesByEmployee | paginate: { itemsPerPage: itemsPerPage, currentPage: page,  totalItems: totalItems }"
+      >
         <div class="buses-block">
           <div class="bus-image">
             <ion-img src="../../../assets/images/bus.png"></ion-img>
           </div>
           <div class="bus-info">
-            <p> Plate No: <b> {{ busItem.busNumber }} </b> </p>
-            <p> Date: <b> {{ busItem.enteranceDateTime }} </b> </p>
+            <p>Plate No: <b> {{ busItem.busNumber }} </b></p>
+            <p>Date: <b> {{ busItem.enteranceDateTime }} </b></p>
           </div>
-    
-          <div class="bus-button" *ngIf="!busItem.isAssign && !busItem.isWorkingOn">
-            <button expand="block" (click)="setOpen(busItem.id)"> Work On </button>
+
+          <div
+            class="bus-button"
+            *ngIf="!busItem.isAssign && !busItem.isWorkingOn"
+          >
+            <button expand="block" (click)="setOpen(busItem.id)">
+              Work On
+            </button>
           </div>
-          <div class="bus-button" *ngIf="busItem.isAssign && busItem.isWorkingOn">
-            <button (click)="onBussInProgress(busItem.id)"> In Progress </button>
+          <div
+            class="bus-button"
+            *ngIf="busItem.isAssign && busItem.isWorkingOn"
+          >
+            <button (click)="onBussInProgress(busItem.id)">In Progress</button>
           </div>
-          <div class="bus-button" *ngIf="busItem.isAssign && !busItem.isWorkingOn">
-            <button [disabled]="busItem.isAssign && !busItem.isWorkingOn"> Done </button>
+          <div
+            class="bus-button"
+            *ngIf="busItem.isAssign && !busItem.isWorkingOn"
+          >
+            <button [disabled]="busItem.isAssign && !busItem.isWorkingOn">
+              Done
+            </button>
           </div>
         </div>
-        
       </ion-col>
 
       <pagination-controls
-      class="pagi"
-      (pageChange)="changePagination($event)"
-    ></pagination-controls>
+        class="pagi"
+        (pageChange)="changePagination($event)"
+      ></pagination-controls>
     </ion-row>
-    
+
     <!-- <div style="text-align: center;"> 
       <p style="margin: 10px;"> Please add picCode </p>
       <ng-otp-input (onInputChange)="onOtpChange($event)" [config]="{length:6}"></ng-otp-input>
@@ -89,11 +108,39 @@
       <ion-content class="ion-padding">
         <div class="form-group-custom">
           <ion-label>Enter pinCode</ion-label>
-          <ng-otp-input (onInputChange)="onOtpChange($event)" [config]="{length:6}"></ng-otp-input>
+          <ng-otp-input
+            (onInputChange)="onOtpChange($event)"
+            [config]="{length:6}"
+          ></ng-otp-input>
         </div>
       </ion-content>
     </ng-template>
   </ion-modal>
-<!-- Modal -->
-</ion-content>
+  <!-- Modal -->
 
+  <!-- Modal Choose bus -->
+  <ion-modal [isOpen]="isModalOpenBus">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-button (click)="setOpenBus()">Cancel</ion-button>
+          </ion-buttons>
+          <ion-buttons slot="end">
+            <ion-button (click)="confirmBus()">Confirm</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <div class="form-group-custom">
+          <ion-label>Enter pinCode</ion-label>
+          <ng-otp-input
+            (onInputChange)="onOtpChange($event)"
+            [config]="{length:6}"
+          ></ng-otp-input>
+        </div>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+  <!-- Modal Choose Bus -->
+</ion-content>

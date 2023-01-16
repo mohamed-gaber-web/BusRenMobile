@@ -1,11 +1,9 @@
-
 <app-header></app-header>
 
 <ion-content>
-
   <div class="page-title">
     <img src="../../../assets/images/manage-attend.png" alt="" />
-    <h3> Manage Attendance  </h3>
+    <h3>Manage Attendance</h3>
   </div>
 
   <div class="attendance-check-info">
@@ -15,35 +13,65 @@
 
     <div class="text-info">
       <ul *ngIf="employByPinCode">
-        <li class="name"> {{ employByPinCode.firstName }} {{ employByPinCode.lastName }} </li>
-        <li> ID: {{ employByPinCode.serialId }} </li>
-        <li *ngIf="employByPinCode.jobTitle === 1 "> Job Type: Fulltime </li>
-        <li *ngIf="employByPinCode.jobTitle === 2 "> Job Type: Parttime </li>
-        <li *ngIf="employByPinCode.jobTitle === 3 "> Job Type: Hourly Based </li>
+        <li class="name">
+          {{ employByPinCode.firstName }} {{ employByPinCode.lastName }}
+        </li>
+        <li>ID: {{ employByPinCode.serialId }}</li>
+        <li *ngIf="employByPinCode.jobTitle === 1 ">Job Type: Fulltime</li>
+        <li *ngIf="employByPinCode.jobTitle === 2 ">Job Type: Parttime</li>
+        <li *ngIf="employByPinCode.jobTitle === 3 ">Job Type: Hourly Based</li>
       </ul>
     </div>
-    <div style="color: #0e829b;" *ngIf="!employByPinCode && employByPinCode == null"> No employee please check in </div>
+    <div
+      style="color: #0e829b"
+      *ngIf="!employByPinCode && employByPinCode == null"
+    >
+      No employee please check in
+    </div>
   </div>
 
   <div class="btn-check">
-    <button [class]="{'un-checked' : checkIn === false, 'checked': checkIn === true }" id="open-modal" expand="block"> Check In </button>
+    <button
+      [class]="{'un-checked' : checkIn === false, 'checked': checkIn === true }"
+      id="open-modal"
+      expand="block"
+    >
+      Check In
+    </button>
 
-    <button [disabled]="!checkIn" *ngIf="!isTakeBreak" expand="block" (click)="setOpen()" [class]="{'un-checked' : !isTakeBreak, 'checked' : isTakeBreak}"> Take Break </button>
-    <button [disabled]="!checkIn" *ngIf="isTakeBreak" class="checked" (click)="backToWork()"> Back to work </button>
+    <button
+      [disabled]="!checkIn"
+      *ngIf="!isTakeBreak"
+      expand="block"
+      (click)="setOpen()"
+      [class]="{'un-checked' : !isTakeBreak, 'checked' : isTakeBreak}"
+    >
+      Take Break
+    </button>
+    <button
+      [disabled]="!checkIn"
+      *ngIf="isTakeBreak"
+      class="checked"
+      (click)="backToWork()"
+    >
+      Back to work
+    </button>
     <div class="take-brake">
       <div class="time-take-break" *ngFor="let timeBreake of takeFromTime">
         <div class="time-block">
-          <p> From </p>
+          <p>From</p>
           <span class="time"> {{ timeBreake.from | date: 'shortTime' }} </span>
         </div>
         <div class="time-block">
-          <p> Total Time Break </p>
+          <p>Total Time Break</p>
           <span class="time"> {{ timeBreake.totalBreakHours }}</span>
         </div>
       </div>
     </div>
 
-    <button [disabled]="!checkIn" (click)="checkout()" class="un-checked"> Check Out </button>
+    <button [disabled]="!checkIn" (click)="checkout()" class="un-checked">
+      Check Out
+    </button>
   </div>
 
   <!-- Modal -->
@@ -62,7 +90,10 @@
       <ion-content class="ion-padding">
         <div class="form-group-custom">
           <ion-label>Enter pinCode</ion-label>
-          <ng-otp-input (onInputChange)="onOtpChange($event)" [config]="{length:6}"></ng-otp-input>
+          <ng-otp-input
+            (onInputChange)="onOtpChange($event)"
+            [config]="{length:6}"
+          ></ng-otp-input>
         </div>
       </ion-content>
     </ng-template>
@@ -78,18 +109,22 @@
             <ion-button (click)="cancelTakeBreak()">Cancel</ion-button>
           </ion-buttons>
           <ion-buttons slot="end">
-            <ion-button (click)="confirmTakeBreak()" [strong]="true">Confirm</ion-button>
+            <ion-button (click)="confirmTakeBreak()" [strong]="true"
+              >Confirm</ion-button
+            >
           </ion-buttons>
         </ion-toolbar>
       </ion-header>
       <ion-content class="ion-padding">
         <div class="form-group-custom">
           <ion-label>Enter pinCode</ion-label>
-          <ng-otp-input (onInputChange)="onOtpChange($event)" [config]="{length:6}"></ng-otp-input>
+          <ng-otp-input
+            (onInputChange)="onOtpChange($event)"
+            [config]="{length:6}"
+          ></ng-otp-input>
         </div>
       </ion-content>
     </ng-template>
   </ion-modal>
   <!-- Modal take break -->
-
 </ion-content>

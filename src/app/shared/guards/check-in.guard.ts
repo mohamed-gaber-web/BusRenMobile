@@ -15,7 +15,7 @@ export class CheckInGuard implements CanActivate {
     const pinCode = localStorage.getItem('pinCode');
     const checkIn = localStorage.getItem('checkIn');
     const isTakeBreak = JSON.parse(localStorage.getItem('isTakeTime'));
-    if(checkIn || !isTakeBreak) {
+    if(!isTakeBreak) {
       return true;
     } else {
       this.router.navigate(['check-attendance']);

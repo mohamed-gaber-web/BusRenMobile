@@ -6,7 +6,6 @@ import { getBusesByEmployee, workingOnBus } from 'src/app/shared/constants/api.c
 import { DataService } from 'src/app/shared/services/data.service';
 
 import { ToastController, IonModal } from '@ionic/angular';
-import { OverlayEventDetail } from '@ionic/core/components';
 import { Router } from '@angular/router';
 
 @Component({
@@ -19,6 +18,7 @@ export class ChooseBusPage implements OnInit, OnDestroy {
   sub: Subscription[] = [];
   chooseBusForm: FormGroup;
   isModalOpen = false;
+  isModalOpenBus = false;
   pinCode: any = '';
   // pinCodeToggle = false;
   allBusesByEmployee: any;
@@ -39,9 +39,11 @@ export class ChooseBusPage implements OnInit, OnDestroy {
     ) { }
 
   ngOnInit() {
-    this.getAllBuses();
+    
+    // this.getAllBuses();
+    this.isModalOpenBus = true;
     this.createChooseBus();
-    this.pinCode = localStorage.getItem('pinCode');
+    // this.pinCode = localStorage.getItem('pinCode');
   }
 
   onOtpChange(event) {
@@ -76,17 +78,17 @@ export class ChooseBusPage implements OnInit, OnDestroy {
     );
   }
 
-  getAllBuses() {
+  getAllBuses(pincode) {
     this.isLoading = true;
     let queryParams = new HttpParams();
     queryParams = queryParams.set('page', this.page);
     queryParams = queryParams.set('size', this.itemsPerPage);
-    queryParams = queryParams.set('pinCode', localStorage.getItem('pinCode'));
+    queryParams = queryParams.set('pinCode', pincode);
 
     this.sub.push(
       this.dataService.get(`${getBusesByEmployee}`, {params: queryParams})
       .subscribe(async(response) => {
-        console.log(response)
+        // console.log(response)
         if(response['success'] === true) {
           this.isLoading = false;
           this.allBusesByEmployee = response['result'].list;
@@ -108,7 +110,7 @@ export class ChooseBusPage implements OnInit, OnDestroy {
 
   changePagination(e) {
     this.page = e;
-    this.getAllBuses();
+    this.getAllBuses(this.pinCode);
   }
 
   // Modal Function
@@ -131,12 +133,21 @@ export class ChooseBusPage implements OnInit, OnDestroy {
     // this.busId = busId
   }
 
+  setOpenBus() {
+    this.isModalOpenBus = !this.isModalOpenBus;
+  }
+  confirmBus() {
+    this.modalBus.dismiss(this.pinCode, 'confirm');
+    this.getAllBuses(this.pinCode);
+    this.isModalOpenBus = false;
+  }
+
   workOnBus(pinCode: string, busId: string) {
     this.dataService.post(`${workingOnBus}`, {pinCode, busId})
     .subscribe(async (res) => {
-      console.log(res, busId, pinCode)
+      // console.log(res, busId, pinCode)
       if(res['success'] === true) {
-
+        this.getAllBuses(this.pinCode);
       }
       else {
         const toast = await this.toastController.create({
@@ -149,24 +160,27 @@ export class ChooseBusPage implements OnInit, OnDestroy {
     });
   }
 
-  onBussInProgress(busId) {
+  onBussInProgress(busId: string) {
     this.router.navigate(['/work-on-bus'], { queryParams: {pinCode: this.pinCode, busId: busId }});
   }
 
   handleRefresh(event) {
     setTimeout(() => {
-      this.getAllBuses();
+      this.getAllBuses(this.pinCode);
       event.target.complete();
     }, 500);
+    this.isModalOpenBus = true;
   };
 
   ngOnDestroy() {
     this.sub.forEach(s => s.unsubscribe());
+    this.isModalOpenBus = false;
   }
 
   ionViewDidLeave() {
     // this.pinCodeToggle = false;
     this.isLoading = false;
+    this.isModalOpenBus = true;
     this.sub.forEach(s => s.unsubscribe());
     this.chooseBusForm = this.fb.group({
       searchBus: ['', Validators.required],

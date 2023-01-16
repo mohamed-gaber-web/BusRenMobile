@@ -289,7 +289,7 @@ select {
 
 .btn-check {
     text-align: center;
-    margin: 45px 0 ;
+    margin: 40px 0 80px 0 ;
     button {
         display: block;
         width: 50%;
@@ -386,7 +386,7 @@ select {
 
     .form-button {
         text-align: center;
-        margin-top: 50px;
+        margin: 20px 0 100px 0;
 
         button {
             background-color: var(--ion-color-primary);
@@ -572,6 +572,14 @@ h3.bus-number {
     }
 }
 // Report Bus
+
+.hide {
+    display: none !important;
+}
+
+.show {
+    display: block !important;
+}
 
 
 // Media query mobile version

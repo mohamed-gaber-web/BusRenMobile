@@ -1,66 +1,87 @@
 <app-header></app-header>
 
 <ion-content>
-
   <div class="page-title">
     <img src="../../../assets/images/add-bus-titl.png" alt="" />
-    <h3> Add Bus  </h3>
+    <h3>Add Bus</h3>
   </div>
 
   <ion-grid>
     <ion-row *ngIf="pinCodeToggle">
       <ion-col>
-        <form [formGroup]="addBusForm" class="add-bus-form" (ngSubmit)="onAddBus()">
+        <form
+          [formGroup]="addBusForm"
+          class="add-bus-form"
+          (ngSubmit)="onAddBus()"
+        >
           <div class="form-group">
-            <label> Bus No:  </label>
-            <input type="text" formControlName="busNumber" placeholder="Add bus number" required />
-            <div *ngIf="busNumber.invalid && (busNumber.dirty || busNumber.touched)" class="error">
-              <span *ngIf="busNumber.errors?.required"> Bus Number Is Required </span>
+            <label> Bus No: </label>
+            <input
+              type="text"
+              formControlName="busNumber"
+              placeholder="Add bus number"
+              required
+            />
+            <div
+              *ngIf="busNumber.invalid && (busNumber.dirty || busNumber.touched)"
+              class="error"
+            >
+              <span *ngIf="busNumber.errors?.required">
+                Bus Number Is Required
+              </span>
             </div>
           </div>
 
           <div class="form-group">
-            <label> Date:  </label>
-              <input type="datetime-local" formControlName="enteranceDateTime" />
+            <label> Date: </label>
+            <input type="datetime-local" formControlName="enteranceDateTime" />
           </div>
 
           <div class="form-group select-icon">
-            <label> Garage:  </label>
+            <label> Garage: </label>
             <img src="../../../assets/images/icon-select.png" />
             <select formControlName="garage">
-              <option [value]="garage.id" *ngFor="let garage of allGarages"> {{ garage.name }} </option>
+              <option [value]="garage.id" *ngFor="let garage of allGarages">
+                {{ garage.name }}
+              </option>
             </select>
           </div>
 
           <div class="form-group select-icon">
-            <label> Company:  </label>
+            <label> Company: </label>
             <img src="../../../assets/images/icon-select.png" />
             <select formControlName="company">
-              <option [value]="company.id" *ngFor="let company of allCompanies"> {{ company.name }} </option>
+              <option [value]="company.id" *ngFor="let company of allCompanies">
+                {{ company.name }}
+              </option>
             </select>
           </div>
 
-            <!-- <div class="form-group-pinCode">
+          <!-- <div class="form-group-pinCode">
               <label> Add PinCode:  </label>
               <ng-otp-input (onInputChange)="onOtpChange($event)" [config]="{length:6}"></ng-otp-input>
             </div> -->
-          
-            <div class="form-button">
-              <button type="button"> Next </button>
-              <button [disabled]="pinCodeS === '' && addBusForm.invalid"> Done </button>
-              <!-- <button> <ion-icon name="lock-closed-outline"></ion-icon> PinCode </button> -->
+
+          <div class="form-button">
+            <button type="button" (click)="resetForm()">Next</button>
+            <button [disabled]="pinCodeS === '' && addBusForm.invalid">
+              Done
+            </button>
+            <!-- <button> <ion-icon name="lock-closed-outline"></ion-icon> PinCode </button> -->
           </div>
         </form>
       </ion-col>
     </ion-row>
   </ion-grid>
 
-  <div style="text-align: center;" *ngIf="!pinCodeToggle"> 
-    <p style="margin: 10px;"> Please add picCode </p>
-    <ng-otp-input (onInputChange)="onOtpChange($event)" [config]="{length:6}"></ng-otp-input>
-    <div style="margin-top: 10px;" class="btn">
-      <button class="primary-btn" (click)="savePinCode()"> save </button>
+  <div style="text-align: center" *ngIf="!pinCodeToggle">
+    <p style="margin: 10px">Please add picCode</p>
+    <ng-otp-input
+      (onInputChange)="onOtpChange($event)"
+      [config]="{length:6}"
+    ></ng-otp-input>
+    <div style="margin-top: 10px" class="btn">
+      <button class="primary-btn" (click)="savePinCode()">save</button>
     </div>
   </div>
-
 </ion-content>

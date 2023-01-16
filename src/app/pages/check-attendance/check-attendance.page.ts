@@ -203,36 +203,40 @@ export class CheckAttendancePage implements OnInit, OnDestroy {
 
   // check out
   checkout() {
-    this.dataService.put(`${checkoutAttendance}`, { piCode: localStorage.getItem('pinCode') })
-    .subscribe(async (response) => {
-      console.log(response, this.pinCode)
-      if (response['success'] === true) {
-        localStorage.clear();
-        // response success
-        const toast = await this.toastController.create({
-          message: 'checkout success ',
-          duration: 4000,
-          cssClass: 'custom-toast',
-        });
-        await toast.present();
-        localStorage.clear();
+    // this.dataService.put(`${checkoutAttendance}`, { piCode: localStorage.getItem('pinCode') })
+    // .subscribe(async (response) => {
+    //   console.log(response, this.pinCode)
+    //   if (response['success'] === true) {
+    //     localStorage.clear();
+    //     // response success
+    //     const toast = await this.toastController.create({
+    //       message: 'checkout success ',
+    //       duration: 4000,
+    //       cssClass: 'custom-toast',
+    //     });
+    //     await toast.present();
+    //     localStorage.clear();
+    //     this.employByPinCode = null;
+    //     this.isTakeBreak = null;
+    //   } else {
+    //     // wrong pinCode
+    //     const toast = await this.toastController.create({
+    //       message: response['arrayMessage'],
+    //       duration: 4000,
+    //       cssClass: 'custom-toast',
+    //     });
+    //     this.employByPinCode = null;
+    //     this.isTakeBreak = null;
+    //     this.checkIn = false;
+    //     localStorage.clear();
+        
+
+    //   }
+    // })
         this.employByPinCode = null;
         this.isTakeBreak = null;
-      } else {
-        // wrong pinCode
-        const toast = await this.toastController.create({
-          message: response['arrayMessage'],
-          duration: 4000,
-          cssClass: 'custom-toast',
-        });
-    localStorage.clear();
-    this.employByPinCode = null;
-    this.isTakeBreak = null;
-      }
-    })
-    // localStorage.clear();
-    // this.employByPinCode = null;
-    // this.isTakeBreak = null;
+        this.checkIn = false;
+        localStorage.clear();
   }
 
   ngOnDestroy() {
