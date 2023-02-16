@@ -26,13 +26,14 @@
       style="color: #0e829b"
       *ngIf="!employByPinCode && employByPinCode == null"
     >
-      No employee please check in
+      No employee please choose employee
     </div>
   </div>
 
   <div class="btn-check">
     <button
-      [class]="{'un-checked' : checkIn === false, 'checked': checkIn === true }"
+      [class]="{'un-checked' : !checkIn, 'checked': checkIn }"
+      s
       id="open-modal"
       expand="block"
     >
@@ -40,20 +41,14 @@
     </button>
 
     <button
-      [disabled]="!checkIn"
+      [class]="{'un-checked' : !isTakeBreak, 'checked': isTakeBreak}"
       *ngIf="!isTakeBreak"
       expand="block"
-      (click)="setOpen()"
-      [class]="{'un-checked' : !isTakeBreak, 'checked' : isTakeBreak}"
+      (click)="setOpenTake()"
     >
       Take Break
     </button>
-    <button
-      [disabled]="!checkIn"
-      *ngIf="isTakeBreak"
-      class="checked"
-      (click)="backToWork()"
-    >
+    <button *ngIf="isTakeBreak" class="checked" (click)="setOpenBack()">
       Back to work
     </button>
     <div class="take-brake">
@@ -69,7 +64,11 @@
       </div>
     </div>
 
-    <button [disabled]="!checkIn" (click)="checkout()" class="un-checked">
+    <button
+      [disabled]="isTakeBreak || isCheckOut"
+      (click)="setOpenCheckout()"
+      class="un-checked"
+    >
       Check Out
     </button>
   </div>
@@ -101,7 +100,7 @@
   <!-- Modal -->
 
   <!-- Modal take break -->
-  <ion-modal [isOpen]="isModalOpen">
+  <ion-modal [isOpen]="isModalOpenTakeBreak">
     <ng-template>
       <ion-header>
         <ion-toolbar>
@@ -127,4 +126,61 @@
     </ng-template>
   </ion-modal>
   <!-- Modal take break -->
+
+  <!-- Modal check out -->
+  <ion-modal [isOpen]="isModalOpenCheckout">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-button (click)="cancelCheckout()">Cancel</ion-button>
+          </ion-buttons>
+          <ion-buttons slot="end">
+            <ion-button (click)="confirmCheckout()" [strong]="true"
+              >Confirm</ion-button
+            >
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding ion-text-center">
+        <div class="form-group-custom">
+          <ion-label>Enter pinCode</ion-label>
+          <ng-otp-input
+            (onInputChange)="onOtpChange($event)"
+            [config]="{length:6}"
+          ></ng-otp-input>
+        </div>
+        <h3>You are checking out now</h3>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+  <!-- Modal check out -->
+
+  <!-- Modal back to work -->
+  <ion-modal [isOpen]="isModalOpenBack">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-button (click)="cancelBackToWork()">Cancel</ion-button>
+          </ion-buttons>
+          <ion-buttons slot="end">
+            <ion-button (click)="confirmBackToWork()" [strong]="true"
+              >Confirm</ion-button
+            >
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding ion-text-center">
+        <div class="form-group-custom">
+          <ion-label>Enter pinCode</ion-label>
+          <ng-otp-input
+            (onInputChange)="onOtpChange($event)"
+            [config]="{length:6}"
+          ></ng-otp-input>
+        </div>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+  <!-- Modal back to woork -->
 </ion-content>

@@ -47,7 +47,7 @@ export class DataService {
         if(response['success'] === true) {
           this.employeeByPinCode.next(response['result']);
           localStorage.setItem('employee', JSON.stringify(response['result']));
-          localStorage.setItem('pinCode', pin);
+          // localStorage.setItem('pinCode', pin);
           this.router.navigate(['/check-attendance'])
         } else {
           // wrong pinCode

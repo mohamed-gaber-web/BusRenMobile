@@ -3,7 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { IonModal, ToastController } from '@ionic/angular';
 import { Subscription } from 'rxjs';
-import { getAllEmployee, getEmployeeByPinCode } from 'src/app/shared/constants/api.constants';
+import { getAllEmployee, getEmployeeByPinCode, todayAttendance } from 'src/app/shared/constants/api.constants';
 import { DataService } from 'src/app/shared/services/data.service';
 
 @Component({
@@ -32,6 +32,7 @@ export class AllEmpolyeePage implements OnInit {
 
   ngOnInit() {
     this.getAllEmployee();
+
   }
 
   getAllEmployee() {
@@ -42,6 +43,7 @@ export class AllEmpolyeePage implements OnInit {
       this.dataService.get(`${getAllEmployee}`, {params: queryParams})
       .subscribe(response => {
         this.listOfEmployee = response['list'];
+        // this.getTodayAttendance();
       })
     );
   }
@@ -66,7 +68,6 @@ export class AllEmpolyeePage implements OnInit {
 
   confirm() {
     this.modal.dismiss(this.pinCode, 'confirm');
-    console.log('pinCode Employee is', this.pinCode, this.employeeId)
     this.getProfileEmployeeByPinCode(this.pinCode, this.employeeId)
   }
 

@@ -24,12 +24,12 @@ const routes: Routes = [
       {
         path: 'add-bus',
         loadChildren: () => import('../pages/add-bus/add-bus.module').then( m => m.AddBusPageModule),
-        canActivate: [CheckInGuard]
+        // canActivate: [CheckInGuard]
       },
       {
         path: 'choose-bus',
         loadChildren: () => import('../pages/choose-bus/choose-bus.module').then( m => m.ChooseBusPageModule),
-        canActivate: [CheckInGuard]
+        // canActivate: [CheckInGuard]
       },
       {
         path: 'work-on-bus',

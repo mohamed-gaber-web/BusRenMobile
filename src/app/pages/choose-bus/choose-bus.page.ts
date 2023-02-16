@@ -28,8 +28,6 @@ export class ChooseBusPage implements OnInit, OnDestroy {
   isLoading = false;
   error: string;
   busId: string;
-  // isAssign: any;
-  // isWorkingOn: any;
 
   constructor(
     private fb: FormBuilder,
@@ -40,19 +38,12 @@ export class ChooseBusPage implements OnInit, OnDestroy {
 
   ngOnInit() {
     
-    // this.getAllBuses();
     this.isModalOpenBus = true;
     this.createChooseBus();
-    // this.pinCode = localStorage.getItem('pinCode');
   }
 
   onOtpChange(event) {
     this.pinCode = event.toString();
-  }
-
-  savePinCode() {
-    // this.pinCodeToggle = true;
-    // this.getAllBuses();
   }
 
   createChooseBus() {
@@ -124,18 +115,20 @@ export class ChooseBusPage implements OnInit, OnDestroy {
 
   confirm() {
     this.modalBus.dismiss(this.pinCode, 'confirm');
-    this.workOnBus(this.pinCode, localStorage.getItem('busId'));
+    this.workOnBus(this.pinCode, this.busId); //localStorage.getItem('busId')
   }
 
   setOpen(busId?: string) {
     this.isModalOpen = !this.isModalOpen;
-    localStorage.setItem('busId', busId);
+    this.busId = busId;
+    // localStorage.setItem('busId', busId);
     // this.busId = busId
   }
 
   setOpenBus() {
     this.isModalOpenBus = !this.isModalOpenBus;
   }
+
   confirmBus() {
     this.modalBus.dismiss(this.pinCode, 'confirm');
     this.getAllBuses(this.pinCode);
@@ -178,14 +171,9 @@ export class ChooseBusPage implements OnInit, OnDestroy {
   }
 
   ionViewDidLeave() {
-    // this.pinCodeToggle = false;
     this.isLoading = false;
     this.isModalOpenBus = true;
     this.sub.forEach(s => s.unsubscribe());
-    this.chooseBusForm = this.fb.group({
-      searchBus: ['', Validators.required],
-      category: ['', Validators.required],
-    });
   }
 
 }

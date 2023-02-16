@@ -1,30 +1,69 @@
 <app-header></app-header>
 
 <ion-content>
-
   <div class="page-title">
     <img src="../../../assets/images/report.png" alt="" />
-    <h3> Report a problem  </h3>
+    <h3>Report a problem</h3>
   </div>
 
-  <h3 class="bus-number"> <span> Bus No: </span> {{ busNumber }} </h3>
+  <h3 class="bus-number"><span> Bus No: </span> {{ busNumber }}</h3>
 
   <ion-grid>
     <ion-row>
       <ion-col>
-        <form [formGroup]="reportForm" class="report-bus-form" (ngSubmit)="onAddReportBus()">
+        <form
+          [formGroup]="reportForm"
+          class="report-bus-form"
+          (ngSubmit)="onAddReportBus()"
+        >
           <div class="input-group" *ngFor="let problem of listOfProblems">
-            <div class="form-group">
-              <label for="oil"> {{ problem['problemTranslations'].name }}</label><br>          
-              <input 
-                (change)="sendId($event)" 
-                formControlName="{{problem.id}}problemId" type="checkbox" id="oil" 
-                value="{{problem.id}}">
-            </div>
-            <textarea formControlName="{{problem.problemTranslations?.name}}text" placeholder="Add text"></textarea>
+            <ion-accordion-group>
+              <ion-accordion value="first">
+                <ion-item slot="header" color="light">
+                  <ion-label
+                    >{{ problem['problemTranslations'].name }}</ion-label
+                  >
+                </ion-item>
+                <div class="ion-padding" slot="content">
+                  <div class="form-group">
+                    <label for="oil">
+                      {{ problem['problemTranslations'].name }}</label
+                    ><br />
+                    <input
+                      (change)="sendId($event)"
+                      formControlName="{{problem.id}}problemId"
+                      type="checkbox"
+                      id="oil"
+                      value="{{problem.id}}"
+                    />
+                  </div>
+                  <textarea
+                    formControlName="{{problem.problemTranslations?.name}}text"
+                    placeholder="Add text"
+                  ></textarea>
+                </div>
+              </ion-accordion>
+            </ion-accordion-group>
           </div>
+          <ion-button
+            fill="clear"
+            expand="full"
+            color="light"
+            (click)="addNewToGallery()"
+          >
+            <ion-icon slot="start" name="camera"></ion-icon>
+            Select Image
+          </ion-button>
+          <ion-list n-list class="image-prev" *ngIf="images.length !== 0 ">
+            <ion-item *ngFor="let file of images; let i = index">
+              <ion-thumbnail>
+                <ion-img [src]="file.data"></ion-img>
+              </ion-thumbnail>
+              <!-- <div (click)="startUpload(file)">upload</div> -->
+            </ion-item>
+          </ion-list>
           <div class="form-button">
-            <button> Done </button>
+            <button>Done</button>
           </div>
           <br />
           <br />
@@ -34,5 +73,4 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-
 </ion-content>

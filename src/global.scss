@@ -68,7 +68,7 @@ ion-toolbar {
     }
 }
  ion-tab-bar, ion-tab-button{
-    background: var(--ion-color-secondary);
+    background: var(--ion-color-primary);
     min-height: 65px;
     border-radius: 40px 40px 0 0;
 
@@ -119,6 +119,7 @@ ion-back-button {
 
  a[disabled], button[disabled], html input[disabled] {
     background-color: #f1ffcd !important;
+    color: #000 !important;
   }
 
 .valid-error {
@@ -308,6 +309,7 @@ select {
     .un-checked {
         background-color: #fff !important;
         border: 3px solid var(--ion-color-primary);
+        color: #000;
     }
 
         
@@ -450,6 +452,7 @@ select {
             padding: 0 10px;
             border: 1px solid var(--ion-color-primary);
             position: relative;
+            color: #000;
         }
         ion-icon {
             position: absolute;
@@ -559,6 +562,17 @@ select {
             font-size: 16px;
             font-weight: 600;
         }
+    }
+
+    ion-button {
+        background-color:#ADE125;
+        width: 50%;
+        margin: 20px auto;
+    }
+
+    .image-prev {
+        display: flex;
+        flex-wrap: wrap;
     }
 }
 

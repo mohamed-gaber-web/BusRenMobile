@@ -7,10 +7,10 @@
         height: 200px;
 
 
-        img {
+        ion-img {
             width: 100%;
-            height: auto;
-            border-radius: 10px;
+            height: 100px;
+            object-fit: cover;
         }
 
         h3 {

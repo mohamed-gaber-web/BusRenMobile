@@ -1,24 +1,26 @@
 <app-header></app-header>
 
-
 <ion-content>
   <div class="page-title">
     <img src="../../../assets/images/manage-attend.png" alt="" />
-    <h3> Manage Attendance  </h3>
+    <h3>Manage Attendance</h3>
   </div>
 
   <ion-grid class="employes">
     <ion-row class="">
-      <ion-col (click)="setOpen(employee.id)" size="2" *ngFor="let employee of listOfEmployee">
+      <ion-col
+        (click)="setOpen(employee.id)"
+        size="2"
+        *ngFor="let employee of listOfEmployee"
+      >
         <div class="employee" expand="block">
-          <img [src]="employee.imagePath" />
-          <h3> {{ employee.firstName}} </h3>
+          <ion-img [src]="employee.imagePath"> </ion-img>
+          <h3>{{ employee.firstName}}</h3>
         </div>
       </ion-col>
     </ion-row>
   </ion-grid>
 
-  
   <!-- Modal -->
   <ion-modal [isOpen]="isModalOpen">
     <ng-template>
@@ -35,11 +37,13 @@
       <ion-content class="ion-padding">
         <div class="form-group-custom">
           <ion-label>Enter pinCode</ion-label>
-          <ng-otp-input (onInputChange)="onOtpChange($event)" [config]="{length:6}"></ng-otp-input>
+          <ng-otp-input
+            (onInputChange)="onOtpChange($event)"
+            [config]="{length:6}"
+          ></ng-otp-input>
         </div>
       </ion-content>
     </ng-template>
   </ion-modal>
   <!-- Modal -->
-
 </ion-content>

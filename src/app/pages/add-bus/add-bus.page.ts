@@ -49,6 +49,7 @@ export class AddBusPage implements OnInit, OnDestroy {
   }
 
   resetForm() {
+    this.onAddBusNext();
     this.addBusForm.reset();
   }
 
@@ -70,6 +71,24 @@ export class AddBusPage implements OnInit, OnDestroy {
       .subscribe(response => {
         if(response) {
           this.router.navigate(['choose-bus']);
+        }
+      })
+    );
+  }
+
+    onAddBusNext() {
+    const addBusObj = {
+      busNumber: this.addBusForm.value.busNumber,
+      pinCode: this.pinCodeS,
+      enteranceDateTime: this.addBusForm.value.enteranceDateTime,
+      garageId: this.addBusForm.value.garage,
+      companyId: this.addBusForm.value.company
+    };
+    this.sub.push(
+      this.dataService.post(`${addBusEmployee}`, addBusObj)
+      .subscribe(response => {
+        if(response) {
+          // this.router.navigate(['choose-bus']);
         }
         console.log('add bus response', response);
       })

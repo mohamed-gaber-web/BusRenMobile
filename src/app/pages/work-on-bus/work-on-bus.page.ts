@@ -1,3 +1,4 @@
+import { Subscription } from 'rxjs';
 import { HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -21,29 +22,38 @@ export class WorkOnBusPage implements OnInit {
   busDetails: any;
   garageId: string;
   busNumber: number;
+  sub: Subscription[] = [];
 
   constructor(
     private dataService: DataService, 
     private route: ActivatedRoute,
     private router: Router,
     private toastController: ToastController
-    ) { }
+    ) { 
+        this.getBusDetails();
+    }
 
   ngOnInit() {
+    this.getBusDetails();
     this.initFormControl();
     this.createForm();
-   
+  }
+
+  getBusDetails() {
     this.route.queryParams.subscribe(queryParams => {
-      this.busId = queryParams['busId'];
-      this.pinCode = queryParams['pinCode']
+    this.busId = queryParams['busId'];
+    this.pinCode = queryParams['pinCode']
     });
+
     let queryParams = new HttpParams();
     queryParams = queryParams.set('id', this.busId);
     queryParams = queryParams.set('pinCode', this.pinCode);
+
+    this.sub.push(
     this.dataService.get(`${busDetails}`, {params: queryParams})
     .subscribe(async(response) => {
       if(response['success'] === true) {
-        console.log('bus details', response)
+        console.log('bus detailssssssssssss', response)
         this.busDetails = response['result'];
         this.busNumber = this.busDetails.busNumber;
       } else {
@@ -56,12 +66,13 @@ export class WorkOnBusPage implements OnInit {
         await toast.present();
         this.router.navigate(['choose-bus']);
       }
-    });
+    })
+    );
+
   }
 
   // ** init form controls
   initFormControl() {
-    // this.category = new FormControl('', Validators.required);
     this.garage = new FormControl('', Validators.required);
     this.company = new FormControl('', Validators.required);
   }
@@ -93,6 +104,19 @@ export class WorkOnBusPage implements OnInit {
 
   goToReportBus() {
     this.router.navigate(['report-bus'], {queryParams: {busNumber: this.busNumber, busId: this.busId, pinCode: this.pinCode}})
+  }
+
+  // ionViewDidLeave() {
+  //   console.log('leaving screen ');
+  // }
+
+  ionViewWillEnter() {
+    this.getBusDetails();
+    console.log('ionViewWillEnter ')
+  }
+
+  ngOnDestroy() {
+    this.sub.forEach(e => e.unsubscribe())
   }
 
 

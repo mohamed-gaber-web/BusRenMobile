@@ -12,10 +12,9 @@ export class CheckInGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    const pinCode = localStorage.getItem('pinCode');
-    const checkIn = localStorage.getItem('checkIn');
-    const isTakeBreak = JSON.parse(localStorage.getItem('isTakeTime'));
-    if(!isTakeBreak) {
+
+    const employee = JSON.parse(localStorage.getItem('employee'));
+    if(!employee.takeBreak) {
       return true;
     } else {
       this.router.navigate(['check-attendance']);
