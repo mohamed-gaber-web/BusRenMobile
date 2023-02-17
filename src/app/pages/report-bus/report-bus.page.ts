@@ -130,7 +130,7 @@ export class ReportBusPage implements OnInit {
 
   async addNewToGallery() {
       const image = await Camera.getPhoto({
-          quality: 100,
+          quality: 50,
           allowEditing: false,
           resultType: CameraResultType.Uri,
           source: CameraSource.Camera // Camera, Photos or Prompt!

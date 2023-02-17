@@ -79,6 +79,10 @@ ion-toolbar {
     }
 }
 
+ion-button.in-toolbar {
+    --color: #000 !important;
+}
+
 .footer-img {
     width: 30px;
     height: 30px;
@@ -382,6 +386,7 @@ select {
             padding: 0 10px;
             border: 1px solid var(--ion-color-primary);
             position: relative;
+            color: #000;
 
         }
     }
@@ -568,6 +573,7 @@ select {
         background-color:#ADE125;
         width: 50%;
         margin: 20px auto;
+        color: #000;
     }
 
     .image-prev {
@@ -616,6 +622,7 @@ h3.bus-number {
 
 .form-group-custom ion-label {
     font-size: 16px !important;
+    padding-right: 8px !important;
 }
 
 .buses-items {
@@ -630,6 +637,11 @@ h3.bus-number {
 .report-bus-form ion-button {
     width: 60%;
 }
+
+.employes {
+    padding: 0 14px !important;
+}
+
 }
 
 // Media query mobile version
