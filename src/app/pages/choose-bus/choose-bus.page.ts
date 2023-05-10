@@ -59,7 +59,7 @@ export class ChooseBusPage implements OnInit, OnDestroy {
     queryParams = queryParams.set('size', this.itemsPerPage);
     queryParams = queryParams.set('busCategory', this.chooseBusForm.value.category);
     queryParams = queryParams.set('search', this.chooseBusForm.value.searchBus);
-    queryParams = queryParams.set('pinCode', localStorage.getItem('pinCode'));
+    queryParams = queryParams.set('pinCode', this.pinCode);
     this.sub.push(
       this.dataService.get(`${getBusesByEmployee}`, {params: queryParams})
       .subscribe(response => {

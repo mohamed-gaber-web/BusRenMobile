@@ -6,8 +6,12 @@
     <h3>Manage Attendance</h3>
   </div>
 
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
   <ion-grid class="employes">
-    <ion-row class="ion-justify-content-center">
+    <ion-row>
       <ion-col
         (click)="setOpen(employee.id)"
         size-xs="4"
@@ -15,7 +19,7 @@
         *ngFor="let employee of listOfEmployee"
       >
         <div class="employee" expand="block">
-          <ion-img [src]="employee.imagePath"> </ion-img>
+          <img [src]="employee.imagePath" />
           <h3>{{ employee.firstName}}</h3>
         </div>
       </ion-col>

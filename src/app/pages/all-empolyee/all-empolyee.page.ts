@@ -76,6 +76,13 @@ export class AllEmpolyeePage implements OnInit {
     this.employeeId = id;
   }
 
+  handleRefresh(event) {
+    setTimeout(() => {
+      this.getAllEmployee();
+      event.target.complete();
+    }, 500);
+  };
+
   ngOnDestroy() {
     this.sub.forEach(e => e.unsubscribe())
   }

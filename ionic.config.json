@@ -3,5 +3,8 @@
   "integrations": {
     "capacitor": {}
   },
-  "type": "angular"
+  "type": "angular",
+    "proxies": [{
+    "proxyUrl": "https://api.busren.dk/"
+  }]
 }
